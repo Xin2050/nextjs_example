@@ -33,6 +33,12 @@
 ```bash
 $ npm install
 ```
+## Set your own JWT Secret
+```bash
+#create a file 'src/DONOTUPLOADTOGIT.ts'
+
+export const secret = '<YOUR OWN SECRET>';
+```
 
 ## Running the app
 
