@@ -1,0 +1,8 @@
+{
+  "server" : {
+    "origin" : "http://nestjs-task.s3-website-eu.aws.com"
+  },
+  "db" : {
+    "synchronize" : false
+  }
+}
