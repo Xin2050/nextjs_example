@@ -2,11 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Lesson } from './lesson.entity';
 import { Repository } from 'typeorm';
-import { CreateLessonInput } from './lesson.input';
+import { AssignStudentsToLessonInput, CreateLessonInput } from './lesson.input';
 
 @Injectable()
 export class LessonService {
-
   constructor(
     @InjectRepository(Lesson) private lessonRepository: Repository<Lesson>,
   ) {
@@ -18,6 +17,7 @@ export class LessonService {
       name,
       startDate,
       endDate,
+      students: [],
     });
 
     return this.lessonRepository.save(lesson);
@@ -31,4 +31,17 @@ export class LessonService {
     return this.lessonRepository.find();
   }
 
+  async assignStudentsToLesson(
+    assignStudentsToLessonInput: AssignStudentsToLessonInput,
+  ): Promise<Lesson> {
+    const { lessonId, students } = assignStudentsToLessonInput;
+    const lesson = await this.lessonRepository.findOne(lessonId);
+    if (lesson.students) {
+      lesson.students = [...lesson.students, ...students];
+    } else {
+      lesson.students = students;
+    }
+
+    return lesson.save();
+  }
 }

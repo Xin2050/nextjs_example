@@ -4,6 +4,8 @@ import { AuthModule } from '../auth/auth.module';
 import { LessonService } from './lesson.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Lesson } from './lesson.entity';
+import { StudentModule } from '../student/student.module';
+
 
 @Module({
   imports: [
@@ -11,6 +13,7 @@ import { Lesson } from './lesson.entity';
     TypeOrmModule.forFeature([
       Lesson,
     ]),
+    StudentModule
   ],
   providers: [LessonResolver, LessonService],
 })

@@ -29,4 +29,8 @@ export class StudentService {
     return await this.studentRepository.findOne(id);
   }
 
+  async getManyStudents(studentIds: number[]): Promise<Student[]> {
+    return await this.studentRepository.findByIds(studentIds);
+  }
+
 }
