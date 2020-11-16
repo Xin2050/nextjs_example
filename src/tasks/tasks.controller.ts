@@ -63,7 +63,7 @@ export class TasksController {
   createTask(
     @GetUser() user: User,
     @Body() createTaskDto: CreateTaskDto): Promise<Task> {
-    this.logger.verbose(`User "${user.id}" create a new tasks. createTaskDto: ${JSON.stringify(CreateTaskDto)}`)
+    this.logger.verbose(`User "${user.id}" create a new tasks. createTaskDto: ${JSON.stringify(createTaskDto)}`)
     return this.tasksService.createTask(createTaskDto, user);
   }
 }
